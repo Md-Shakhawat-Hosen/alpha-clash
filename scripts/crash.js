@@ -6,9 +6,7 @@ function setKeyboardColor(idField){
         
 }
 
-function removeKeyboardColor(){
 
-}
 
 
 

@@ -6,12 +6,34 @@ function keyboardPressByPlayer(event){
   const screenKeyAlphabet = screenKey.innerText;
   const screenKeyAlphabetLowerCase = screenKeyAlphabet.toLowerCase();
 
+    const score_id = getElementId("score-id");
+    const life_id = getElementId('life');
+
+    let life_value = parseInt(life_id.innerText);
+
+    let score_value = parseInt(score_id.innerText);
   if ( screenKeyAlphabetLowerCase === event.key){
      console.log('you win')
-     
+     score_value = score_value + 1;
+
+   
+     score_id.innerText = score_value;
+
+     generateRandomAlphabets()
   }
   else{
     console.log('you lost')
+
+    life_value = life_value - 1;
+
+    life_id.innerText = life_value;
+
+    if (life_value < 1){
+        hideElementById('play-ground');
+        showElementById('final-score');
+    }
+
+    
   }
 }
 

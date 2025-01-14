@@ -1,7 +1,44 @@
-function play(){
-    const home = getElementId('home')
-    const play_ground = getElementId('play-ground');
+
+function setKeyboardColor(idField){
+       
+    const keyid = getElementId(idField);
+    keyid.classList.add('bg-sky-500')
+        
+}
+
+function removeKeyboardColor(){
+
+}
+
+
+
+
+function generateRandomAlphabets(){
+    const alphabets = 'abcdefghijklmnopqrstuvwxyz';
+    const alphabetsArray = alphabets.split('');
+
+    const randomNumber = Math.random()*25;
+    const roundNumber = Math.round(randomNumber);
+    
    
-    home.classList.add('hidden');
-    play_ground.classList.remove('hidden');
+
+    const random_alphabet_id = getElementId("random-alphabet");
+    random_alphabet_id.innerText = alphabetsArray[roundNumber];
+
+  setKeyboardColor(alphabetsArray[roundNumber]);
+    
+}
+
+
+
+
+
+function play(){
+    
+    hideElementById("home");
+    showElementById('play-ground');
+    
+
+    generateRandomAlphabets();
+    
 }

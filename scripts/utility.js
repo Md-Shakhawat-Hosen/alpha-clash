@@ -16,3 +16,8 @@ function hideElementById(idField){
  
     element.classList.add('hidden')
 }
+
+function setKeyboardColor(idField) {
+  const keyid = getElementId(idField);
+  keyid.classList.add("bg-sky-500");
+}

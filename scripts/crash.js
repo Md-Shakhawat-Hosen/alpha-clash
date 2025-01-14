@@ -1,10 +1,22 @@
 
-function setKeyboardColor(idField){
-       
-    const keyid = getElementId(idField);
-    keyid.classList.add('bg-sky-500')
-        
+function keyboardPressByPlayer(event){
+  console.log(event.key);
+
+  const screenKey = getElementId("random-alphabet");
+  const screenKeyAlphabet = screenKey.innerText;
+  const screenKeyAlphabetLowerCase = screenKeyAlphabet.toLowerCase();
+
+  if ( screenKeyAlphabetLowerCase === event.key){
+     console.log('you win')
+     
+  }
+  else{
+    console.log('you lost')
+  }
 }
+
+
+document.addEventListener("keyup", keyboardPressByPlayer);
 
 
 

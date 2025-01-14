@@ -19,6 +19,8 @@ function keyboardPressByPlayer(event){
    
      score_id.innerText = score_value;
 
+     removeKeyboardColor(screenKeyAlphabetLowerCase)
+
      generateRandomAlphabets()
   }
   else{
@@ -31,6 +33,8 @@ function keyboardPressByPlayer(event){
     if (life_value < 1){
         hideElementById('play-ground');
         showElementById('final-score');
+        const final_value = getElementId('final-value');
+        final_value.innerText = score_value;
     }
 
     

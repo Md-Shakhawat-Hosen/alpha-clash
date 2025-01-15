@@ -27,15 +27,3 @@ function removeKeyboardColor(idField){
     key.classList.remove('bg-sky-500');
 }
 
-let currentAudio = null;
- function playSound(letter) {
- 
-    if (currentAudio) {
-       
-      currentAudio.pause();
-      currentAudio.currentTime = 0; // Reset playback position
-    }
-   // Create a new audio object for the corresponding letter
-   currentAudio = new Audio(`sounds/${letter}.mp3`);
-   currentAudio.play();
- }

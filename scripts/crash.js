@@ -1,4 +1,15 @@
 
+let currentAudio = null;
+function playSound(letter) {
+  if (currentAudio) {
+    currentAudio.pause();
+    currentAudio.currentTime = 0; // Reset playback position
+  }
+  // Create a new audio object for the corresponding letter
+  currentAudio = new Audio(`sounds/${letter}.mp3`);
+  currentAudio.play();
+}
+
 function keyboardPressByPlayer(event){
 //   console.log(event.key);
 
@@ -31,6 +42,7 @@ function keyboardPressByPlayer(event){
     life_id.innerText = life_value;
 
     if (life_value < 1){
+      currentAudio.pause();
         hideElementById('play-ground');
         showElementById('final-score');
         const final_value = getElementId('final-value');

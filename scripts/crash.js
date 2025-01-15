@@ -1,13 +1,25 @@
 
 let currentAudio = null;
+let soundInterval = null;
+
 function playSound(letter) {
   if (currentAudio) {
     currentAudio.pause();
     currentAudio.currentTime = 0; // Reset playback position
   }
+
+  if (soundInterval) {
+    clearInterval(soundInterval);
+    soundInterval = null; // Reset the interval
+  }
   // Create a new audio object for the corresponding letter
   currentAudio = new Audio(`sounds/${letter}.mp3`);
   currentAudio.play();
+
+  soundInterval = setInterval(() => {
+    // currentAudio.currentTime = 0; // Reset playback position
+    currentAudio.play(); // Play the sound again
+  }, 1000); // Play sound every 1000ms (1 second)
 }
 
 function keyboardPressByPlayer(event){
@@ -15,6 +27,11 @@ function keyboardPressByPlayer(event){
   if (event.key === 'Enter'){
     play();
   }
+
+  // if (soundInterval) {
+  //   clearInterval(soundInterval);
+  //   soundInterval = null;
+  // }
 
   const screenKey = getElementId("random-alphabet");
   const screenKeyAlphabet = screenKey.innerText;
@@ -46,6 +63,10 @@ function keyboardPressByPlayer(event){
 
     if (life_value < 1){
       currentAudio.pause();
+      if (soundInterval) {
+        clearInterval(soundInterval);
+        soundInterval = null;
+      }
         hideElementById('play-ground');
         showElementById('final-score');
         const final_value = getElementId('final-value');

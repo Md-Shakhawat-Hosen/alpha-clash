@@ -4,6 +4,12 @@ function getElementId(fieldId){
     return element;
 }
 
+function setScoreValue(value){
+    const final_value = getElementId('final-value');
+    final_value.innerText = value;
+    hideElementById('play-ground');
+    showElementById('final-score')
+}
 function showElementById(idField){
     const element = document.getElementById(idField);
 

@@ -24,8 +24,29 @@ function playSound(letter) {
 
 function keyboardPressByPlayer(event){
   // console.log(event.key);
+
+
+    const screenKey = getElementId("random-alphabet");
+    const screenKeyAlphabet = screenKey.innerText;
+    const screenKeyAlphabetLowerCase = screenKeyAlphabet.toLowerCase();
+
+    const score_id = getElementId("score-id");
+    const life_id = getElementId("life");
+
+    let life_value = parseInt(life_id.innerText);
+
+    let score_value = parseInt(score_id.innerText);
+
   if (event.key === 'Enter'){
     play();
+  }
+  if (event.key === 'Escape'){
+     setScoreValue(score_value)
+     currentAudio.pause();
+     if (soundInterval) {
+       clearInterval(soundInterval);
+       soundInterval = null;
+     }
   }
 
   // if (soundInterval) {
@@ -33,16 +54,7 @@ function keyboardPressByPlayer(event){
   //   soundInterval = null;
   // }
 
-  const screenKey = getElementId("random-alphabet");
-  const screenKeyAlphabet = screenKey.innerText;
-  const screenKeyAlphabetLowerCase = screenKeyAlphabet.toLowerCase();
 
-    const score_id = getElementId("score-id");
-    const life_id = getElementId('life');
-
-    let life_value = parseInt(life_id.innerText);
-
-    let score_value = parseInt(score_id.innerText);
   if ( screenKeyAlphabetLowerCase === event.key){
     //  console.log('you win')
      score_value = score_value + 1;

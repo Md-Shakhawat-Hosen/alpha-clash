@@ -46,13 +46,17 @@ document.addEventListener("keyup", keyboardPressByPlayer);
 
 
 function playAgain(){
+  hideElementById("final-score");
   const score_id = getElementId("score-id");
   const life = getElementId('life')
   const alphabet_id = getElementId("random-alphabet");
+
+ 
   const alphabet = alphabet_id.innerText
   life.innerText = 5;
    score_id.innerText = 0;
    removeKeyboardColor(alphabet.toLowerCase());
+
 
    play();
 

@@ -11,7 +11,10 @@ function playSound(letter) {
 }
 
 function keyboardPressByPlayer(event){
-//   console.log(event.key);
+  // console.log(event.key);
+  if (event.key === 'Enter'){
+    play();
+  }
 
   const screenKey = getElementId("random-alphabet");
   const screenKeyAlphabet = screenKey.innerText;

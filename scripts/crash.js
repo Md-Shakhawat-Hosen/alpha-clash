@@ -64,6 +64,7 @@ function playAgain(){
 
 
 
+
 function generateRandomAlphabets(){
     const alphabets = 'abcdefghijklmnopqrstuvwxyz';
     const alphabetsArray = alphabets.split('');
@@ -76,9 +77,10 @@ function generateRandomAlphabets(){
     const random_alphabet_id = getElementId("random-alphabet");
     random_alphabet_id.innerText = alphabetsArray[roundNumber];
 
-    // playSound(alphabetsArray[roundNumber]);
+  
 
   setKeyboardColor(alphabetsArray[roundNumber]);
+   playSound(alphabetsArray[roundNumber]);
     
 }
 

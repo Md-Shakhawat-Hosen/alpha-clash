@@ -40,7 +40,7 @@ function keyboardPressByPlayer(event) {
   // console.log(pressedKey);
 
   if (pressedKey === "Enter" || pressedKey === 'enter') {
-    play();
+    return playAgain();
   }
   if (pressedKey === "Escape" || pressedKey === "escape") {
     setScoreValue(score_value);
@@ -106,7 +106,7 @@ function playAgain() {
   score_id.innerText = 0;
   removeKeyboardColor(alphabet.toLowerCase());
 
-  play();
+  return play();
 }
 
 function generateRandomAlphabets() {

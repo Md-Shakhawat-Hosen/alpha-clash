@@ -1,4 +1,3 @@
-
 let currentAudio = null;
 let soundInterval = null;
 
@@ -22,35 +21,34 @@ function playSound(letter) {
   }, 1000); // Play sound every 1000ms (1 second)
 }
 
-function keyboardPressByPlayer(event){
+function keyboardPressByPlayer(event) {
   // console.log(event);
 
+  const screenKey = getElementId("random-alphabet");
+  const screenKeyAlphabet = screenKey.innerText;
+  const screenKeyAlphabetLowerCase = screenKeyAlphabet.toLowerCase();
+  const pressedKey = event.key
+    ? event.key.toLowerCase()
+    : event.target.innerText.toLowerCase();
+  const score_id = getElementId("score-id");
+  const life_id = getElementId("life");
 
-    const screenKey = getElementId("random-alphabet");
-    const screenKeyAlphabet = screenKey.innerText;
-    const screenKeyAlphabetLowerCase = screenKeyAlphabet.toLowerCase();
- const pressedKey = event.key
-   ? event.key.toLowerCase()
-   : event.target.innerText.toLowerCase();
-    const score_id = getElementId("score-id");
-    const life_id = getElementId("life");
+  let life_value = parseInt(life_id.innerText);
 
-    let life_value = parseInt(life_id.innerText);
+  let score_value = parseInt(score_id.innerText);
 
-    let score_value = parseInt(score_id.innerText);
+  // console.log(pressedKey);
 
-    // console.log(pressedKey);
-
-  if (pressedKey === 'Enter'){
+  if (pressedKey === "Enter") {
     play();
   }
-  if (pressedKey === 'Escape' || pressedKey === 'escape'){
-     setScoreValue(score_value)
-     currentAudio.pause();
-     if (soundInterval) {
-       clearInterval(soundInterval);
-       soundInterval = null;
-     }
+  if (pressedKey === "Escape" || pressedKey === "escape") {
+    setScoreValue(score_value);
+    currentAudio.pause();
+    if (soundInterval) {
+      clearInterval(soundInterval);
+      soundInterval = null;
+    }
   }
 
   // if (soundInterval) {
@@ -58,43 +56,35 @@ function keyboardPressByPlayer(event){
   //   soundInterval = null;
   // }
 
-
-  if ( screenKeyAlphabetLowerCase === pressedKey){
+  if (screenKeyAlphabetLowerCase === pressedKey) {
     //  console.log('you win')
-     score_value = score_value + 1;
+    score_value = score_value + 1;
 
-   
-     score_id.innerText = score_value;
+    score_id.innerText = score_value;
 
-     removeKeyboardColor(screenKeyAlphabetLowerCase)
+    removeKeyboardColor(screenKeyAlphabetLowerCase);
 
-     generateRandomAlphabets()
-  }
-  else{
+    generateRandomAlphabets();
+  } else {
     // console.log('you lost')
 
     life_value = life_value - 1;
 
     life_id.innerText = life_value;
 
-    if (life_value < 1){
+    if (life_value < 1) {
       currentAudio.pause();
       if (soundInterval) {
         clearInterval(soundInterval);
         soundInterval = null;
       }
-        hideElementById('play-ground');
-        showElementById('final-score');
-        const final_value = getElementId('final-value');
-        final_value.innerText = score_value;
+      hideElementById("play-ground");
+      showElementById("final-score");
+      const final_value = getElementId("final-value");
+      final_value.innerText = score_value;
     }
-
-    
   }
 }
-
-
-
 
 document.addEventListener("keyup", keyboardPressByPlayer);
 
@@ -105,56 +95,37 @@ virtualKeys.forEach((key) => {
   // key.addEventListener("touchstart", keyboardPressByPlayer); // For mobile
 });
 
-
-function playAgain(){
+function playAgain() {
   hideElementById("final-score");
   const score_id = getElementId("score-id");
-  const life = getElementId('life')
+  const life = getElementId("life");
   const alphabet_id = getElementId("random-alphabet");
 
- 
-  const alphabet = alphabet_id.innerText
+  const alphabet = alphabet_id.innerText;
   life.innerText = 5;
-   score_id.innerText = 0;
-   removeKeyboardColor(alphabet.toLowerCase());
+  score_id.innerText = 0;
+  removeKeyboardColor(alphabet.toLowerCase());
 
-
-   play();
-
+  play();
 }
 
+function generateRandomAlphabets() {
+  const alphabets = "abcdefghijklmnopqrstuvwxyz";
+  const alphabetsArray = alphabets.split("");
 
+  const randomNumber = Math.random() * 25;
+  const roundNumber = Math.round(randomNumber);
 
-
-function generateRandomAlphabets(){
-    const alphabets = 'abcdefghijklmnopqrstuvwxyz';
-    const alphabetsArray = alphabets.split('');
-
-    const randomNumber = Math.random()*25;
-    const roundNumber = Math.round(randomNumber);
-    
-   
-
-    const random_alphabet_id = getElementId("random-alphabet");
-    random_alphabet_id.innerText = alphabetsArray[roundNumber];
-
-  
+  const random_alphabet_id = getElementId("random-alphabet");
+  random_alphabet_id.innerText = alphabetsArray[roundNumber];
 
   setKeyboardColor(alphabetsArray[roundNumber]);
-   playSound(alphabetsArray[roundNumber]);
-    
+  playSound(alphabetsArray[roundNumber]);
 }
 
+function play() {
+  hideElementById("home");
+  showElementById("play-ground");
 
-
-
-
-function play(){
-    
-    hideElementById("home");
-    showElementById('play-ground');
-    
-
-    generateRandomAlphabets();
-    
+  generateRandomAlphabets();
 }

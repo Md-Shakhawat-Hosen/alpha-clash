@@ -39,12 +39,12 @@ function keyboardPressByPlayer(event){
 
     let score_value = parseInt(score_id.innerText);
 
-    console.log(pressedKey);
+    // console.log(pressedKey);
 
   if (pressedKey === 'Enter'){
     play();
   }
-  if (pressedKey === 'Escape'){
+  if (pressedKey === 'Escape' || pressedKey === 'escape'){
      setScoreValue(score_value)
      currentAudio.pause();
      if (soundInterval) {

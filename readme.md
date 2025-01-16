@@ -103,6 +103,10 @@ A fun and interactive browser-based game that challenges players to press the co
   - Listens for clicks on virtual keys, ensuring compatibility across devices.
 
 ---
+## Contributing
+Feel free to fork the repository and submit pull requests for improvements. Contributions are welcome!
+
+---
 
 ## Installation and Setup
 

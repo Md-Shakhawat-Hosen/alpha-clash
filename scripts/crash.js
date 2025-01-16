@@ -23,13 +23,15 @@ function playSound(letter) {
 }
 
 function keyboardPressByPlayer(event){
-  // console.log(event.key);
+  // console.log(event);
 
 
     const screenKey = getElementId("random-alphabet");
     const screenKeyAlphabet = screenKey.innerText;
     const screenKeyAlphabetLowerCase = screenKeyAlphabet.toLowerCase();
-
+ const pressedKey = event.key
+   ? event.key.toLowerCase()
+   : event.target.innerText.toLowerCase();
     const score_id = getElementId("score-id");
     const life_id = getElementId("life");
 
@@ -37,10 +39,12 @@ function keyboardPressByPlayer(event){
 
     let score_value = parseInt(score_id.innerText);
 
-  if (event.key === 'Enter'){
+    console.log(pressedKey);
+
+  if (pressedKey === 'Enter'){
     play();
   }
-  if (event.key === 'Escape'){
+  if (pressedKey === 'Escape'){
      setScoreValue(score_value)
      currentAudio.pause();
      if (soundInterval) {
@@ -55,7 +59,7 @@ function keyboardPressByPlayer(event){
   // }
 
 
-  if ( screenKeyAlphabetLowerCase === event.key){
+  if ( screenKeyAlphabetLowerCase === pressedKey){
     //  console.log('you win')
      score_value = score_value + 1;
 
@@ -89,10 +93,17 @@ function keyboardPressByPlayer(event){
   }
 }
 
-document.addEventListener("touchstart", keyboardPressByPlayer);
+
 
 
 document.addEventListener("keyup", keyboardPressByPlayer);
+
+const virtualKeys = document.querySelectorAll(".kbd.key"); // Select all `kbd` keys
+virtualKeys.forEach((key) => {
+  // console.log(key)
+  key.addEventListener("click", keyboardPressByPlayer); // For desktop
+  // key.addEventListener("touchstart", keyboardPressByPlayer); // For mobile
+});
 
 
 function playAgain(){

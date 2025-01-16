@@ -89,6 +89,8 @@ function keyboardPressByPlayer(event){
   }
 }
 
+document.addEventListener("touchstart", keyboardPressByPlayer);
+
 
 document.addEventListener("keyup", keyboardPressByPlayer);
 

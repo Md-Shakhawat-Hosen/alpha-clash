@@ -39,7 +39,7 @@ function keyboardPressByPlayer(event) {
 
   // console.log(pressedKey);
 
-  if (pressedKey === "Enter") {
+  if (pressedKey === "Enter" || pressedKey === 'enter') {
     play();
   }
   if (pressedKey === "Escape" || pressedKey === "escape") {
